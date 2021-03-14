@@ -1,11 +1,8 @@
 import React from 'react'
+import HomePage from './components/HomePage'
 
 export default function App() {
     return (
-        <div className="App">
-            
-            <h1>This is not an app</h1>
-
-        </div>
+       <HomePage />
     )
 }
