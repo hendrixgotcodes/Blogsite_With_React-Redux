@@ -15,8 +15,6 @@ function NavBar() {
     const userData = useSelector(selectUserData);
 
 
-    console.log(userData, store.getState());
-
     const dispatch = useDispatch();
 
     return (
@@ -72,7 +70,8 @@ function NavBar() {
 
     function handleBtnOnClick(e){
 
-        
+        e.preventDefault()
+        dispatch(actions.setSearchInput(inputValue))
 
     }
 }
