@@ -1,18 +1,28 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
-import {useSelector} from 'react-redux';
-import { selectSignedIn } from '../features/userSlice';
+import {useDispatch, useSelector} from 'react-redux';
+import { selectSignedIn, actions } from '../features/userSlice';
+
+import '../styling/home.css';
 
 function HomePage() {
 
-    const login = (response)=> console.log(response);
+    const dispatch = useDispatch()
+
+    const login = (response)=> {
+
+        dispatch(actions.setUserData(response.profileObj));
+        // dispatch(selectUserData(response.profileObj))
+        dispatch(actions.setSignedIn(true))
+
+    };
 
     const isSignedIn = useSelector(selectSignedIn)
 
     return (
         <div className="home__page" style={{display: !isSignedIn ? "block" : "none"}}>
 
-            {!isSignedIn ? 
+            {!isSignedIn &&
                 <div className="login__message">
 
                     <h2>📗</h2>
@@ -39,7 +49,7 @@ function HomePage() {
                     />
 
                 </div>
-                : ""
+                
             }
             
         </div>
